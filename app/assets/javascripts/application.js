@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require phaser.min
+//= require phaser
 //= require_tree .
