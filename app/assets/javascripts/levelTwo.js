@@ -1,7 +1,7 @@
 var PIECE_WIDTH = 200,
     PIECE_HEIGHT = 200,
-    BOARD_COLS = 3,
-    BOARD_ROWS = 4;
+    BOARD_COLS = 4,
+    BOARD_ROWS = 3;
 
     var piecesGroup,
         piecesAmount,
@@ -32,7 +32,7 @@ LevelTwo.prototype = {
   },
 
   levelUp: function () {
-    // this.game.state.start('LevelTwo')
+    this.game.state.start('LevelThree')
   },
   prepareBoard: function() {
 
@@ -42,8 +42,9 @@ LevelTwo.prototype = {
         i, j,
         piece;
 
-    BOARD_COLS = Math.floor(game.world.width / PIECE_WIDTH);
-    BOARD_ROWS = Math.floor(game.world.height / PIECE_HEIGHT);
+    // BOARD_COLS = Math.floor(game.world.width / PIECE_WIDTH);
+    // BOARD_ROWS = Math.floor(game.world.height / PIECE_HEIGHT);
+
 
     piecesAmount = BOARD_COLS * BOARD_ROWS;
     shuffledIndexArray = me.createShuffledIndexArray();

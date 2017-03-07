@@ -1,3 +1,7 @@
+var player;
+var frog;
+		// var prinny;
+
 var Main = function(game){
 
 };
@@ -43,7 +47,7 @@ Main.prototype = {
 		me.createPlayer();
 
 		//Add Frog to Screen
-		//me.createFrog();
+		me.createFrog();
 
 
 		//Create the score label
@@ -62,9 +66,39 @@ Main.prototype = {
 
 		//Make the sprite collide with the ground layer
 		me.game.physics.arcade.collide(me.player, me.platforms);
+		me.game.physics.arcade.collide(me.frog, me.platforms);
+		me.game.physics.arcade.collide(me.player, me.frog);
 
 
+		// me.locationX = me.player.body.position.x;
+		// me.locationY = me.player.body.position.y;
+		// console.log(me.locationX, me.locationY);
 
+		// me.frog.body.position.x = (me.player.body.position.x - 50);
+		// me.frog.body.position.y = (me.player.body.position.y - 50);
+		// console.log(me.player.body.position, me.frog.body.position);
+
+					// prinny.chain(me.frog).start();
+
+		if(me.player) {
+			if(me.player.body.velocity.x > 0) {
+				me.frog.body.velocity.x == 130;
+				me.frog.animations.play('right')
+				me.frog.body.position.x = (me.player.body.position.x - 80);
+			}else if (me.player.body.velocity.x < 0) {
+				me.frog.body.velocity.x == -130;
+				me.frog.animations.play('left')
+				me.frog.body.position.x = (me.player.body.position.x + 80);
+			}else if (me.player.body.velocity.y < 0) {
+				me.frog.body.velocity.x == -320;
+				me.frog.frame = 4;
+				me.frog.body.position.y = (me.player.body.position.y + 50);
+			} else {
+				me.frog.body.velocity.x = 0;
+				me.frog.animations.stop();
+				me.frog.frame = 4;
+			}
+		}
 
 
 		// //Make the sprite jump when the up key is pushed
@@ -84,24 +118,31 @@ Main.prototype = {
 		  {
 		      //  Move to the left
 		      me.player.body.velocity.x = -150;
-
 		      me.player.animations.play('left');
+					//FROG
+					// me.frog.body.velocity.x = -100;
+					// me.frog.animations.play('left');
 		  }
 		  else if (me.cursors.right.isDown)
 		  {
 		      //  Move to the right
 		      me.player.body.velocity.x = 150;
-
 		      me.player.animations.play('right');
+					// FROG
+					// me.frog.body.velocity.x = 100;
+					// me.frog.animations.play('right');
 		  }
 		  else
 		  {
 		      //  Stand still
 					me.player.body.velocity.x = 0;
-
 		      me.player.animations.stop();
-
 		      me.player.frame = 4;
+					// FROG
+					// me.frog.body.velocity.x = 0;
+		      // me.frog.animations.stop();
+		      // me.frog.frame = 4;
+
 		  }
 
 		  //  Allow the player to jump if they are touching the ground.
@@ -109,16 +150,23 @@ Main.prototype = {
 		  {
 		      me.player.body.velocity.y = -350;
 		      me.player.frame = 4;
+					// FROG
+					// me.frog.body.velocity.y = -350;
+					// me.frog.frame = 4;
 		  }
 
 	    //Check if the player is touching the bottom
 	    if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
 	    	me.gameOver();
 	    }
+			//if(player and frog collide) {
+			// 	me.gameOver()
+			// }
 
-			if(me.score === 20) {
+			if(me.score === 10) {
 				me.levelUp();
 			}
+
 	},
 
 	gameOver: function(){
@@ -180,8 +228,8 @@ Main.prototype = {
 	initPlatforms: function(){
 
 		var me = this,
-			bottom = me.game.world.height - me.tileHeight,
-			top = me.tileHeight;
+				bottom = me.game.world.height - me.tileHeight,
+				top = me.tileHeight;
 
 		//Keep creating platforms until they reach (near) the top of the screen
 		for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing){
@@ -195,7 +243,8 @@ Main.prototype = {
 		var me = this;
 
 		//Add the player to the game by creating a new sprite
-		me.player = me.game.add.sprite(0,0, 'princess');
+		me.player = me.game.add.sprite(180,0, 'princess');
+				// prinny = me.player;
 		//Set the players anchor point to be in the middle horizontally
 		me.player.anchor.setTo(0.5, 1.0);
 		//Enable physics on the player
@@ -209,6 +258,30 @@ Main.prototype = {
 
 		me.player.animations.add('left', [0, 1, 2, 3], 10, true);
 		me.player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+	},
+	//
+	createFrog: function() {
+		var me = this;
+
+
+		me.frog = me.game.add.sprite(0,0, 'frog');
+		me.frog.anchor.setTo(0.5, 1.0);
+		me.game.add.tween(me.frog).to({x: me.locationX, y: me.locationY}, 1000, Phaser.Easing.Linear.None)
+
+
+
+		me.game.physics.arcade.enable(me.frog);
+		me.frog.body.gravity.y = 500;
+		me.frog.body.collideWorldBounds = true;
+		me.frog.body.bounce.y = 0.3;
+
+		me.frog.animations.add('left', [0, 1, 2, 3], 10, true);
+		me.frog.animations.add('right', [5, 6, 7, 8], 10, true);
+
+
+
+
 
 	},
 
