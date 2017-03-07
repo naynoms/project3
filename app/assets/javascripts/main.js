@@ -21,6 +21,7 @@ Main.prototype = {
 		//Set the background colour to blue
 		// me.game.stage.backgroundColor = '479cde';
 	  game.add.sprite(0, 0, 'sky');
+		game.add.sprite(0, 0, 'baguette');
 
 
 		//Enable the Arcade physics system
@@ -41,12 +42,15 @@ Main.prototype = {
 		//Add the player to the screen
 		me.createPlayer();
 
+		//Add Frog to Screen
+		//me.createFrog();
+
 
 		//Create the score label
 		me.createScore();
 
 		//Add a platform every 2 seconds
-		me.timer = game.time.events.loop(2500, me.addPlatform, me);
+		me.timer = game.time.events.loop(2800, me.addPlatform, me);
 
 	    //Enable cursor keys so we can create some controls
 	    me.cursors = me.game.input.keyboard.createCursorKeys();
@@ -111,10 +115,18 @@ Main.prototype = {
 	    if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
 	    	me.gameOver();
 	    }
+
+			if(me.score === 20) {
+				me.levelUp();
+			}
 	},
 
 	gameOver: function(){
 		this.game.state.start('Main');
+	},
+
+	levelUp: function() {
+		this.game.state.start('LevelTwo')
 	},
 
 	addTile: function(x, y){
@@ -147,13 +159,11 @@ Main.prototype = {
 
 		//Work out how many tiles we need to fit across the whole screen
 		var tilesNeeded = Math.ceil(me.game.world.width / me.tileWidth);
-		console.log(me.tileWidth);
-		console.log('tiles needed ' + tilesNeeded);
+
 
 		//Add a hole randomly somewhere
 	    var hole = Math.floor(Math.random() * (tilesNeeded - 5)) + 1;
 
-			console.log('hole ' + hole);
 
 	    //Keep creating tiles next to each other until we have an entire row
 	    //Don't add tiles where the random hole is
