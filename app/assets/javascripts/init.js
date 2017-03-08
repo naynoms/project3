@@ -7,6 +7,7 @@ game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 game.state.add("Boot", Boot);
 game.state.add("Preload", Preload);
 game.state.add("GameTitle", GameTitle);
+game.state.add("ReadySet", ReadySet);
 game.state.add("Main", Main);
 game.state.add("LevelTwo", LevelTwo);
 game.state.add("LevelThree", LevelThree);

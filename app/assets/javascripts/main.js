@@ -67,10 +67,12 @@ Main.prototype = {
 		//Make the sprite collide with the ground layer
 		me.game.physics.arcade.collide(me.player, me.platforms);
 		me.game.physics.arcade.collide(me.frog, me.platforms);
-		me.game.physics.arcade.collide(me.player, me.frog);
+		// me.game.physics.arcade.collide(me.player, me.frog);
 
 
 		me.locationX = me.player.body.position.x;
+
+		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), (me.player.body.position.y), 0, 1500 )
 		// me.locationY = me.player.body.position.y;
 		// console.log(me.locationX, me.locationY);
 
@@ -79,32 +81,32 @@ Main.prototype = {
 		// console.log(me.player.body.position, me.frog.body.position);
 		// debugger
 					// prinny.chain(me.frog).start();
-					me.frogPosition(me.locationX);
+		me.frogPosition(me.locationX);
 
 						// console.log('prinny ' + me.locationX + '  frog ' + me.frog.position.x);
 
 
 
-		if(me.player) {
-			// frogPosition(me.locationX);
-			if(me.player.body.velocity.x > 0) {
-				me.frog.body.velocity.x == 130;
-				me.frog.animations.play('right')
-				// me.frog.body.position.x = (me.player.body.position.x);
-			}else if (me.player.body.velocity.x < 0) {
-				me.frog.body.velocity.x == -130;
-				me.frog.animations.play('left')
-				// me.frog.body.position.x = (me.player.body.position.x);
-			}else if (me.player.body.velocity.y < 0) {
-				me.frog.body.velocity.x == -320;
-				me.frog.frame = 4;
-				// me.frog.body.position.y = (me.player.body.position.y + 50);
-			} else {
-				me.frog.body.velocity.x = 0;
-				me.frog.animations.stop();
-				me.frog.frame = 4;
-			}
-		}
+		// if(me.player) {
+		// 	// frogPosition(me.locationX);
+		// 	if(me.player.body.velocity.x > 0) {
+		// 		// me.frog.body.velocity.x == 130;
+		// 		me.frog.animations.play('right')
+		// 		// me.frog.body.position.x = (me.player.body.position.x);
+		// 	}else if (me.player.body.velocity.x < 0) {
+		// 		// me.frog.body.velocity.x == -130;
+		// 		me.frog.animations.play('left')
+		// 		// me.frog.body.position.x = (me.player.body.position.x);
+		// 	}else if (me.player.body.velocity.y < 0) {
+		// 		// me.frog.body.velocity.x == -320;
+		// 		me.frog.frame = 4;
+		// 		// me.frog.body.position.y = (me.player.body.position.y + 50);
+		// 	} else {
+		// 		me.frog.body.velocity.x = 0;
+		// 		me.frog.animations.stop();
+		// 		me.frog.frame = 4;
+		// 	}
+		// }
 
 
 
@@ -167,9 +169,9 @@ Main.prototype = {
 	    if(me.player.body.position.y >= me.game.world.height - me.player.body.height){
 	    	me.gameOver();
 	    }
-			//if(player and frog collide) {
-			// 	me.gameOver()
-			// }
+			// If player and frog touch game over
+			game.physics.arcade.overlap(me.player, me.frog, me.gameOver, null, me);
+
 
 			if(me.score === 8) {
 				me.levelUp();
@@ -275,12 +277,13 @@ Main.prototype = {
 
 		me.frog = me.game.add.sprite(0,0, 'frog');
 		me.frog.anchor.setTo(0.5, 1.0);
-		me.game.add.tween(me.frog).to({x: me.locationX, y: me.locationY}, 1000, Phaser.Easing.Linear.None)
+		// me.game.add.tween(me.frog).to({x: me.locationX, y: me.locationY}, 1000, Phaser.Easing.Linear.None)
+
 
 
 
 		me.game.physics.arcade.enable(me.frog);
-		me.frog.body.gravity.y = 500;
+		me.frog.body.gravity.y = 400;
 		me.frog.body.collideWorldBounds = true;
 		me.frog.body.bounce.y = 0.3;
 
@@ -320,7 +323,29 @@ Main.prototype = {
 		// } else {
 		// 	me.frog.position.x++;
 		// }
+// 		if( frog.x > princess.x ){
+// 	frog.x --
+// } else {
+// 	frog.x ++
+// }
+
+
 		var me = this;
+
+		var frogX = me.frog.position.x
+		if(frogX > playerX) {
+			me.frog.body.velocity.x == 130;
+			// frogX
+		} else {
+			me.frog.body.velocity.x == -130;
+			// frogX ++
+		}
+		game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0 )
+
+
+
+
+
 		console.log('prinny ' + playerX + 'frog ' + me.frog.position.x);
 	},
 
