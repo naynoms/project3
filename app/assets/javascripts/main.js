@@ -25,7 +25,7 @@ Main.prototype = {
 		//Set the background colour to blue
 		// me.game.stage.backgroundColor = '479cde';
 	  game.add.sprite(0, 0, 'sky');
-		game.add.sprite(0, 0, 'baguette');
+		// game.add.sprite(0, 0, 'baguette');
 
 
 		//Enable the Arcade physics system
@@ -70,35 +70,43 @@ Main.prototype = {
 		me.game.physics.arcade.collide(me.player, me.frog);
 
 
-		// me.locationX = me.player.body.position.x;
+		me.locationX = me.player.body.position.x;
 		// me.locationY = me.player.body.position.y;
 		// console.log(me.locationX, me.locationY);
 
 		// me.frog.body.position.x = (me.player.body.position.x - 50);
 		// me.frog.body.position.y = (me.player.body.position.y - 50);
 		// console.log(me.player.body.position, me.frog.body.position);
-
+		// debugger
 					// prinny.chain(me.frog).start();
+					me.frogPosition(me.locationX);
+
+						// console.log('prinny ' + me.locationX + '  frog ' + me.frog.position.x);
+
+
 
 		if(me.player) {
+			// frogPosition(me.locationX);
 			if(me.player.body.velocity.x > 0) {
 				me.frog.body.velocity.x == 130;
 				me.frog.animations.play('right')
-				me.frog.body.position.x = (me.player.body.position.x - 80);
+				// me.frog.body.position.x = (me.player.body.position.x);
 			}else if (me.player.body.velocity.x < 0) {
 				me.frog.body.velocity.x == -130;
 				me.frog.animations.play('left')
-				me.frog.body.position.x = (me.player.body.position.x + 80);
+				// me.frog.body.position.x = (me.player.body.position.x);
 			}else if (me.player.body.velocity.y < 0) {
 				me.frog.body.velocity.x == -320;
 				me.frog.frame = 4;
-				me.frog.body.position.y = (me.player.body.position.y + 50);
+				// me.frog.body.position.y = (me.player.body.position.y + 50);
 			} else {
 				me.frog.body.velocity.x = 0;
 				me.frog.animations.stop();
 				me.frog.frame = 4;
 			}
 		}
+
+
 
 
 		// //Make the sprite jump when the up key is pushed
@@ -163,7 +171,7 @@ Main.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 10) {
+			if(me.score === 5) {
 				me.levelUp();
 			}
 
@@ -174,7 +182,7 @@ Main.prototype = {
 	},
 
 	levelUp: function() {
-		this.game.state.start('LevelTwo')
+		this.game.state.start('LevelThree')
 	},
 
 	addTile: function(x, y){
@@ -232,7 +240,7 @@ Main.prototype = {
 				top = me.tileHeight;
 
 		//Keep creating platforms until they reach (near) the top of the screen
-		for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing){
+		for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing ){
 			me.addPlatform(y);
 		}
 
@@ -305,5 +313,17 @@ Main.prototype = {
 		me.scoreLabel.text = me.score;
 
 	},
+
+	frogPosition: function( playerX ) {
+		// if (me.frog.position.x > playerX) {
+		// 	me.frog.position.x--;
+		// } else {
+		// 	me.frog.position.x++;
+		// }
+		var me = this;
+		console.log('prinny ' + playerX + 'frog ' + me.frog.position.x);
+	},
+
+
 
 };

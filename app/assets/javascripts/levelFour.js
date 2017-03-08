@@ -2,11 +2,11 @@ var player;
 var frog;
 		// var prinny;
 
-var LevelThree = function(game){
+var LevelFour = function(game){
 
 };
 
-LevelThree.prototype = {
+LevelFour.prototype = {
 
 	create: function() {
 
@@ -25,22 +25,23 @@ LevelThree.prototype = {
 		//Set the background colour to blue
 		// me.game.stage.backgroundColor = '479cde';
 	  game.add.sprite(0, 0, 'sky');
-		// game.add.sprite(0, 0, 'baguette');
+		game.add.sprite(0, 0, 'baguette');
 
 
 		//Enable the Arcade physics system
 		me.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//Add a platforms group to hold all of our tiles, and create a bunch of them
-    // me.platforms = me.game.add.physicsGroup();
-
-		me.platforms = me.game.add.group();
+		me.platforms = me.game.add.physicsGroup();
 		me.platforms.enableBody = true;
+    // me.platforms.
 		me.platforms.createMultiple(450, 'tile');
 
-    // me.platforms.setAll('body.allowGravity', true);
-    // me.platforms.setAll('body.immovable', true);
-    // me.platforms.setAll('body.velocity.y', 1500);
+
+
+// me.platforms.setAll('body.allowGravity', false);
+// me.platforms.setAll('body.immovable', true);
+// me.platforms.setAll('body.velocity.x', 100);
 
 		// var ground = me.platforms.create(0, game.world.height - 64, 'ground');
 	  // ground.scale.setTo(2, 2);
@@ -60,7 +61,7 @@ LevelThree.prototype = {
 		me.createScore();
 
 		//Add a platform every 2 seconds
-		me.timer = game.time.events.loop(900, me.addPlatform, me);
+		me.timer = game.time.events.loop(3200, me.addPlatform, me);
 
 	    //Enable cursor keys so we can create some controls
 	    me.cursors = me.game.input.keyboard.createCursorKeys();
@@ -123,7 +124,7 @@ LevelThree.prototype = {
 		  if (me.cursors.left.isDown)
 		  {
 		      //  Move to the left
-		      me.player.body.velocity.x = -200;
+		      me.player.body.velocity.x = -150;
 		      me.player.animations.play('left');
 					//FROG
 					// me.frog.body.velocity.x = -100;
@@ -132,7 +133,7 @@ LevelThree.prototype = {
 		  else if (me.cursors.right.isDown)
 		  {
 		      //  Move to the right
-		      me.player.body.velocity.x = 200;
+		      me.player.body.velocity.x = 150;
 		      me.player.animations.play('right');
 					// FROG
 					// me.frog.body.velocity.x = 100;
@@ -141,7 +142,7 @@ LevelThree.prototype = {
 		  else
 		  {
 		      //  Stand still
-					me.player.body.velocity.x = 0;
+					// me.player.body.velocity.x = 0;
 		      me.player.animations.stop();
 		      me.player.frame = 4;
 					// FROG
@@ -154,7 +155,7 @@ LevelThree.prototype = {
 		  //  Allow the player to jump if they are touching the ground.
 		  if (me.cursors.up.isDown && me.player.body.touching.down)
 		  {
-		      me.player.body.velocity.y = -400;
+		      me.player.body.velocity.y = -350;
 		      me.player.frame = 4;
 					// FROG
 					// me.frog.body.velocity.y = -350;
@@ -169,7 +170,7 @@ LevelThree.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 3) {
+			if(me.score === 10) {
 				me.levelUp();
 			}
 
@@ -180,7 +181,7 @@ LevelThree.prototype = {
 	},
 
 	levelUp: function() {
-		this.game.state.start('LevelFour')
+		this.game.state.start('LevelTwo')
 	},
 
 	addTile: function(x, y){
@@ -192,7 +193,7 @@ LevelThree.prototype = {
 
 	    //Reset it to the specified coordinates
 	    tile.reset(x, y);
-	    tile.body.velocity.y = 135;
+	    tile.body.velocity.y = 30;
 	    tile.body.immovable = true;
 
 	    //When the tile leaves the screen, kill it
@@ -224,7 +225,7 @@ LevelThree.prototype = {
 
 			//TODO FIXME!!
 	    for (var i = 0; i < tilesNeeded; i++){
-	        if (i != hole && i != hole + 1 && i != hole + 2 && i != hole + 3 && i != hole + 4 && i != hole + 9 && i != hole + 10 && i != hole + 11 ){
+	        if (i != hole && i != hole + 1 && i != hole + 2 && i != hole + 3 && i != hole + 4 && i != hole + 7 && i != hole + 8 && i != hole + 14 && i != hole + 15 && i != hole + 16 && i != hole + 20 ){
 	        	this.addTile(i * me.tileWidth, y);
 	        }
 	    }
@@ -238,7 +239,7 @@ LevelThree.prototype = {
 				top = me.tileHeight;
 
 		//Keep creating platforms until they reach (near) the top of the screen
-		for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing ){
+		for(var y = bottom; y > top - me.tileHeight; y = y - me.spacing){
 			me.addPlatform(y);
 		}
 
@@ -256,7 +257,7 @@ LevelThree.prototype = {
 		//Enable physics on the player
 		me.game.physics.arcade.enable(me.player);
 		//Make the player fall by applying gravity
-		me.player.body.gravity.y = 350;
+		me.player.body.gravity.y = 300;
 		//Make the player collide with the game boundaries
 		me.player.body.collideWorldBounds = true;
 		//Make the player bounce a little
