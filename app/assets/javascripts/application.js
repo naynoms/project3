@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require phaser
+//= require boot
+//= require cable
+//= require gameover
+//= require gametitle
+//= require levelFour
+//= require levelThree
+//= require levelTwo
+//= require main
+//= require preload
 //= require_tree .
