@@ -169,7 +169,7 @@ LevelThree.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 2) {
+			if(me.score === 6) {
 				me.levelUp();
 			}
 

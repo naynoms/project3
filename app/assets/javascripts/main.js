@@ -171,7 +171,7 @@ Main.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 5) {
+			if(me.score === 8) {
 				me.levelUp();
 			}
 
