@@ -22,4 +22,5 @@
 //= require levelTwo
 //= require main
 //= require preload
+//= require init
 //= require_tree .
