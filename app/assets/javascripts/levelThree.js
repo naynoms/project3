@@ -180,7 +180,7 @@ LevelThree.prototype = {
 	},
 
 	levelUp: function() {
-		this.game.state.start('LevelFour')
+		this.game.state.start('ReadySet1')
 	},
 
 	addTile: function(x, y){

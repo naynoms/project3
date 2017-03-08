@@ -87,26 +87,26 @@ Main.prototype = {
 
 
 
-		// if(me.player) {
-		// 	// frogPosition(me.locationX);
-		// 	if(me.player.body.velocity.x > 0) {
-		// 		// me.frog.body.velocity.x == 130;
-		// 		me.frog.animations.play('right')
-		// 		// me.frog.body.position.x = (me.player.body.position.x);
-		// 	}else if (me.player.body.velocity.x < 0) {
-		// 		// me.frog.body.velocity.x == -130;
-		// 		me.frog.animations.play('left')
-		// 		// me.frog.body.position.x = (me.player.body.position.x);
-		// 	}else if (me.player.body.velocity.y < 0) {
-		// 		// me.frog.body.velocity.x == -320;
-		// 		me.frog.frame = 4;
-		// 		// me.frog.body.position.y = (me.player.body.position.y + 50);
-		// 	} else {
-		// 		me.frog.body.velocity.x = 0;
-		// 		me.frog.animations.stop();
-		// 		me.frog.frame = 4;
-		// 	}
-		// }
+		if(me.player) {
+			// frogPosition(me.locationX);
+			if(me.player.body.velocity.x > 0) {
+				me.frog.body.velocity.x == 130;
+				me.frog.animations.play('right')
+				me.frog.body.position.x = (me.player.body.position.x - 70);
+			}else if (me.player.body.velocity.x < 0) {
+				me.frog.body.velocity.x == -130;
+				me.frog.animations.play('left')
+				me.frog.body.position.x = (me.player.body.position.x + 70);
+			}else if (me.player.body.velocity.y < 0) {
+				me.frog.body.velocity.x == -320;
+				me.frog.frame = 4;
+				me.frog.body.position.y = (me.player.body.position.y + 50);
+			} else {
+				me.frog.body.velocity.x = 0;
+				me.frog.animations.stop();
+				me.frog.frame = 4;
+			}
+		}
 
 
 
@@ -318,29 +318,18 @@ Main.prototype = {
 	},
 
 	frogPosition: function( playerX ) {
-		// if (me.frog.position.x > playerX) {
-		// 	me.frog.position.x--;
-		// } else {
-		// 	me.frog.position.x++;
-		// }
-// 		if( frog.x > princess.x ){
-// 	frog.x --
-// } else {
-// 	frog.x ++
-// }
-
 
 		var me = this;
 
-		var frogX = me.frog.position.x
-		if(frogX > playerX) {
-			me.frog.body.velocity.x == 130;
-			// frogX
-		} else {
-			me.frog.body.velocity.x == -130;
-			// frogX ++
-		}
-		game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0 )
+		// var frogX = me.frog.position.x
+		// if(frogX > playerX) {
+		// 	me.frog.body.velocity.x == 130;
+		// 	// frogX
+		// } else {
+		// 	me.frog.body.velocity.x == -130;
+		// 	// frogX ++
+		// }
+		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0 )
 
 
 

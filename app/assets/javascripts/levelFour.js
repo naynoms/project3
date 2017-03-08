@@ -170,7 +170,7 @@ LevelFour.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 10) {
+			if(me.score === 3) {
 				me.levelUp();
 			}
 
@@ -181,7 +181,7 @@ LevelFour.prototype = {
 	},
 
 	levelUp: function() {
-		this.game.state.start('LevelTwo')
+		this.game.state.start('ReadySet2')
 	},
 
 	addTile: function(x, y){
