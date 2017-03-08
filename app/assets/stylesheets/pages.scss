@@ -6,10 +6,21 @@
   box-sizing: border-box;
 }
 .container {
-  width: 960px;
   margin: 0 auto;
 }
 
 canvas {
   margin: 0 auto;
+}
+
+#game {
+  display:inline-block;
+  width: 60%;
+  min-width: 800px;
+}
+
+.instructions-a, .instructions-b {
+  display: inline-block;
+  width: 19%;
+  vertical-align: top;
 }

@@ -8,6 +8,7 @@ Preload.prototype = {
     game.load.image('sky', '/assets/sky.png');
     game.load.image('ground', '/assets/platform.png');
     game.load.image('tile', '/assets/grassy.png')
+		game.load.image('tile2', '/assets/snowy.png')
     game.load.spritesheet('princess', '/assets/princess.png', 35, 56);
     game.load.spritesheet('frog', '/assets/frog.png', 35, 44);
 		game.load.spritesheet('puzzle', '/assets/puzzle.png', 200, 200);

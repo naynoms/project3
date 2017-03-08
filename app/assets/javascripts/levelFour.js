@@ -19,8 +19,8 @@ LevelFour.prototype = {
 		me.score = 0;
 
 		//Get the dimensions of the tile we are using
-		me.tileWidth = me.game.cache.getImage('tile').width;
-		me.tileHeight = me.game.cache.getImage('tile').height;
+		me.tileWidth = me.game.cache.getImage('tile2').width;
+		me.tileHeight = me.game.cache.getImage('tile2').height;
 
 		//Set the background colour to blue
 		// me.game.stage.backgroundColor = '479cde';
@@ -35,7 +35,7 @@ LevelFour.prototype = {
 		me.platforms = me.game.add.physicsGroup();
 		me.platforms.enableBody = true;
     // me.platforms.
-		me.platforms.createMultiple(450, 'tile');
+		me.platforms.createMultiple(450, 'tile2');
 
 
 
