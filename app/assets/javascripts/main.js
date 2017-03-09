@@ -71,58 +71,32 @@ Main.prototype = {
 
 
 		me.locationX = me.player.body.position.x;
-
-		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), (me.player.body.position.y), 0, 1500 )
-		// me.locationY = me.player.body.position.y;
-		// console.log(me.locationX, me.locationY);
-
-		// me.frog.body.position.x = (me.player.body.position.x - 50);
-		// me.frog.body.position.y = (me.player.body.position.y - 50);
-		// console.log(me.player.body.position, me.frog.body.position);
-		// debugger
-					// prinny.chain(me.frog).start();
-		me.frogPosition(me.locationX);
-
-						// console.log('prinny ' + me.locationX + '  frog ' + me.frog.position.x);
+		me.locationY = me.player.body.position.y;
 
 
+		me.frogPosition(me.locationX, me.locationY);
 
-		if(me.player) {
-			// frogPosition(me.locationX);
-			if(me.player.body.velocity.x > 0) {
-				me.frog.body.velocity.x == 130;
-				me.frog.animations.play('right')
-				me.frog.body.position.x = (me.player.body.position.x - 70);
-			}else if (me.player.body.velocity.x < 0) {
-				me.frog.body.velocity.x == -130;
-				me.frog.animations.play('left')
-				me.frog.body.position.x = (me.player.body.position.x + 70);
-			}else if (me.player.body.velocity.y < 0) {
-				me.frog.body.velocity.x == -320;
-				me.frog.frame = 4;
-				me.frog.body.position.y = (me.player.body.position.y + 50);
-			} else {
-				me.frog.body.velocity.x = 0;
-				me.frog.animations.stop();
-				me.frog.frame = 4;
-			}
-		}
-
-
+		// if(me.player) {
+		// 	if(me.player.body.velocity.x > 0) {
+		// 		me.frog.body.velocity.x == 130;
+		// 		// me.frog.animations.play('right')
+		// 		// me.frog.body.position.x = (me.player.body.position.x - 80);
+		// 	}else if (me.player.body.velocity.x < 0) {
+		// 		me.frog.body.velocity.x == -130;
+		// 		// me.frog.animations.play('left')
+		// 		// me.frog.body.position.x = (me.player.body.position.x + 80);
+		// 	}else if (me.player.body.velocity.y < 0) {
+		// 		me.frog.body.velocity.x == -320;
+		// 		// me.frog.frame = 4;
+		// 		// me.frog.body.position.y = (me.player.body.position.y + 50);
+		// 	} else {
+		// 		me.frog.body.velocity.x = 0;
+		// 		// me.frog.animations.stop();
+		// 		// me.frog.frame = 4;
+		// 	}
+		// }
 
 
-		// //Make the sprite jump when the up key is pushed
-	  //   if(me.cursors.up.isDown && me.player.body.wasTouching.down) {
-	  //    	me.player.body.velocity.y = -1400;
-	  //   }
-	  //   //Make the player go left
-	  //   if(me.cursors.left.isDown){
-	  //   	me.player.body.velocity.x += -30;
-	  //   }
-	  //   //Make the player go right
-	  //   if(me.cursors.right.isDown){
-	  //   	me.player.body.velocity.x += 30;
-	  //   }
 
 		  if (me.cursors.left.isDown)
 		  {
@@ -173,18 +147,19 @@ Main.prototype = {
 			game.physics.arcade.overlap(me.player, me.frog, me.gameOver, null, me);
 
 
-			if(me.score === 8) {
+			if(me.score === 0) {
 				me.levelUp();
 			}
 
 	},
 
 	gameOver: function(){
-		this.game.state.start('Main');
+		// this.game.state.start('Finish');
+		this.game.state.start('ReadySet');
 	},
 
 	levelUp: function() {
-		this.game.state.start('LevelThree')
+		this.game.state.start('ReadySet3')
 	},
 
 	addTile: function(x, y){
@@ -301,8 +276,8 @@ Main.prototype = {
 		var me = this;
 
 		var scoreFont = "100px Arial";
-
-		me.scoreLabel = me.game.add.text((me.game.world.centerX), 100, "0", {font: scoreFont, fill: "#fff"});
+		me.score = 8;
+		me.scoreLabel = me.game.add.text((me.game.world.centerX), 100, "8", {font: scoreFont, fill: "#fff"});
 		me.scoreLabel.anchor.setTo(0.5, 0.5);
 		me.scoreLabel.align = 'center';
 
@@ -312,30 +287,34 @@ Main.prototype = {
 
 		var me = this;
 
-		me.score += 1;
+		me.score -= 1;
 		me.scoreLabel.text = me.score;
 
 	},
 
-	frogPosition: function( playerX ) {
+	frogPosition: function( playerX, playerY) {
 
 		var me = this;
 
-		// var frogX = me.frog.position.x
-		// if(frogX > playerX) {
-		// 	me.frog.body.velocity.x == 130;
-		// 	// frogX
-		// } else {
-		// 	me.frog.body.velocity.x == -130;
-		// 	// frogX ++
-		// }
-		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0 )
+		var frogX = me.frog.position.x
+		if(frogX > playerX) {
+			me.frog.body.position.x -- ;
+			me.frog.animations.play('left')
+		} else if(frogX < playerX) {
+			me.frog.body.position.x ++;
+			me.frog.animations.play('right')
+		} else {
+			me.frog.animations.stop();
 
+		}
 
+		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0, 1500 )
 
+		var frogY = me.frog.position.y
+		if(frogY > playerY && (frogY - playerY) > 60) {
+			me.frog.body.position.y -= 3;
+		}
 
-
-		console.log('prinny ' + playerX + 'frog ' + me.frog.position.x);
 	},
 
 

@@ -142,7 +142,7 @@ LevelTwo.prototype = {
       });
 
       if (isFinished) {
-          levelUp();
+          levelUp('Finish');
       }
 
   },

@@ -1,6 +1,5 @@
 var player;
 var frog;
-		// var prinny;
 
 var LevelFour = function(game){
 
@@ -23,9 +22,8 @@ LevelFour.prototype = {
 		me.tileHeight = me.game.cache.getImage('tile2').height;
 
 		//Set the background colour to blue
-		// me.game.stage.backgroundColor = '479cde';
 	  game.add.sprite(0, 0, 'sky');
-		game.add.sprite(0, 0, 'baguette');
+		// game.add.sprite(0, 0, 'baguette');
 
 
 		//Enable the Arcade physics system
@@ -38,14 +36,6 @@ LevelFour.prototype = {
 		me.platforms.createMultiple(450, 'tile2');
 
 
-
-// me.platforms.setAll('body.allowGravity', false);
-// me.platforms.setAll('body.immovable', true);
-// me.platforms.setAll('body.velocity.x', 100);
-
-		// var ground = me.platforms.create(0, game.world.height - 64, 'ground');
-	  // ground.scale.setTo(2, 2);
-	  // ground.body.immovable = true;
 
 		//Create the inital on screen platforms
 		me.initPlatforms();
@@ -61,7 +51,7 @@ LevelFour.prototype = {
 		me.createScore();
 
 		//Add a platform every 2 seconds
-		me.timer = game.time.events.loop(3200, me.addPlatform, me);
+		me.timer = game.time.events.loop(6500, me.addPlatform, me);
 
 	    //Enable cursor keys so we can create some controls
 	    me.cursors = me.game.input.keyboard.createCursorKeys();
@@ -76,50 +66,57 @@ LevelFour.prototype = {
 		me.game.physics.arcade.collide(me.frog, me.platforms);
 		me.game.physics.arcade.collide(me.player, me.frog);
 
-
-		// me.locationX = me.player.body.position.x;
-		// me.locationY = me.player.body.position.y;
-		// console.log(me.locationX, me.locationY);
-
-		// me.frog.body.position.x = (me.player.body.position.x - 50);
-		// me.frog.body.position.y = (me.player.body.position.y - 50);
-		// console.log(me.player.body.position, me.frog.body.position);
-
-					// prinny.chain(me.frog).start();
-
-		if(me.player) {
-			if(me.player.body.velocity.x > 0) {
-				me.frog.body.velocity.x == 130;
-				me.frog.animations.play('right')
-				me.frog.body.position.x = (me.player.body.position.x - 80);
-			}else if (me.player.body.velocity.x < 0) {
-				me.frog.body.velocity.x == -130;
-				me.frog.animations.play('left')
-				me.frog.body.position.x = (me.player.body.position.x + 80);
-			}else if (me.player.body.velocity.y < 0) {
-				me.frog.body.velocity.x == -320;
-				me.frog.frame = 4;
-				me.frog.body.position.y = (me.player.body.position.y + 50);
-			} else {
-				me.frog.body.velocity.x = 0;
-				me.frog.animations.stop();
-				me.frog.frame = 4;
-			}
-		}
+		me.locationX = me.player.body.position.x;
+		me.locationY = me.player.body.position.y;
 
 
-		// //Make the sprite jump when the up key is pushed
-	  //   if(me.cursors.up.isDown && me.player.body.wasTouching.down) {
-	  //    	me.player.body.velocity.y = -1400;
-	  //   }
-	  //   //Make the player go left
-	  //   if(me.cursors.left.isDown){
-	  //   	me.player.body.velocity.x += -30;
-	  //   }
-	  //   //Make the player go right
-	  //   if(me.cursors.right.isDown){
-	  //   	me.player.body.velocity.x += 30;
-	  //   }
+		me.frogPosition(me.locationX, me.locationY);
+
+
+		//
+		// // me.locationX = me.player.body.position.x;
+		// // me.locationY = me.player.body.position.y;
+		// // console.log(me.locationX, me.locationY);
+		//
+		// // me.frog.body.position.x = (me.player.body.position.x - 50);
+		// // me.frog.body.position.y = (me.player.body.position.y - 50);
+		// // console.log(me.player.body.position, me.frog.body.position);
+		//
+		// 			// prinny.chain(me.frog).start();
+		//
+		// if(me.player) {
+		// 	if(me.player.body.velocity.x > 0) {
+		// 		me.frog.body.velocity.x == 130;
+		// 		me.frog.animations.play('right')
+		// 		me.frog.body.position.x = (me.player.body.position.x - 80);
+		// 	}else if (me.player.body.velocity.x < 0) {
+		// 		me.frog.body.velocity.x == -130;
+		// 		me.frog.animations.play('left')
+		// 		me.frog.body.position.x = (me.player.body.position.x + 80);
+		// 	}else if (me.player.body.velocity.y < 0) {
+		// 		me.frog.body.velocity.x == -320;
+		// 		me.frog.frame = 4;
+		// 		me.frog.body.position.y = (me.player.body.position.y + 50);
+		// 	} else {
+		// 		me.frog.body.velocity.x = 0;
+		// 		me.frog.animations.stop();
+		// 		me.frog.frame = 4;
+		// 	}
+		// }
+		//
+		//
+		// // //Make the sprite jump when the up key is pushed
+	  // //   if(me.cursors.up.isDown && me.player.body.wasTouching.down) {
+	  // //    	me.player.body.velocity.y = -1400;
+	  // //   }
+	  // //   //Make the player go left
+	  // //   if(me.cursors.left.isDown){
+	  // //   	me.player.body.velocity.x += -30;
+	  // //   }
+	  // //   //Make the player go right
+	  // //   if(me.cursors.right.isDown){
+	  // //   	me.player.body.velocity.x += 30;
+	  // //   }
 
 		  if (me.cursors.left.isDown)
 		  {
@@ -170,14 +167,18 @@ LevelFour.prototype = {
 			// 	me.gameOver()
 			// }
 
-			if(me.score === 3) {
+			// If player and frog touch game over
+			game.physics.arcade.overlap(me.player, me.frog, me.gameOver, null, me);
+
+
+			if(me.score === 0) {
 				me.levelUp();
 			}
 
 	},
 
 	gameOver: function(){
-		this.game.state.start('Main');
+		this.game.state.start('ReadySet');
 	},
 
 	levelUp: function() {
@@ -193,7 +194,7 @@ LevelFour.prototype = {
 
 	    //Reset it to the specified coordinates
 	    tile.reset(x, y);
-	    tile.body.velocity.y = 30;
+	    tile.body.velocity.y = 20;
 	    tile.body.immovable = true;
 
 	    //When the tile leaves the screen, kill it
@@ -274,7 +275,7 @@ LevelFour.prototype = {
 
 		me.frog = me.game.add.sprite(0,0, 'frog');
 		me.frog.anchor.setTo(0.5, 1.0);
-		me.game.add.tween(me.frog).to({x: me.locationX, y: me.locationY}, 1000, Phaser.Easing.Linear.None)
+		// me.game.add.tween(me.frog).to({x: me.locationX, y: me.locationY}, 1000, Phaser.Easing.Linear.None)
 
 
 
@@ -298,7 +299,8 @@ LevelFour.prototype = {
 
 		var scoreFont = "100px Arial";
 
-		me.scoreLabel = me.game.add.text((me.game.world.centerX), 100, "0", {font: scoreFont, fill: "#fff"});
+		me.score = 8;
+		me.scoreLabel = me.game.add.text((me.game.world.centerX), 100, "8", {font: scoreFont, fill: "#fff"});
 		me.scoreLabel.anchor.setTo(0.5, 0.5);
 		me.scoreLabel.align = 'center';
 
@@ -308,8 +310,32 @@ LevelFour.prototype = {
 
 		var me = this;
 
-		me.score += 1;
+		me.score -= 1;
 		me.scoreLabel.text = me.score;
+
+	},
+	frogPosition: function( playerX, playerY) {
+
+		var me = this;
+
+		var frogX = me.frog.position.x
+		if(frogX > playerX) {
+			me.frog.body.position.x -- ;
+			me.frog.animations.play('left')
+		} else if(frogX < playerX) {
+			me.frog.body.position.x ++;
+			me.frog.animations.play('right')
+		} else {
+			me.frog.animations.stop();
+
+		}
+
+		// game.physics.arcade.moveToXY(me.frog, (me.player.body.position.x), 0, 1500 )
+
+		var frogY = me.frog.position.y
+		if(frogY > playerY && (frogY - playerY) > 60) {
+			me.frog.body.position.y -= 3;
+		}
 
 	},
 
