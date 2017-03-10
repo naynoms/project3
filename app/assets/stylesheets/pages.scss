@@ -26,7 +26,7 @@ body {
 
   // background-image: linear-gradient(red, orange);
 
-  background: linear-gradient( 120deg, rgba(229, 92, 218, 0.8), rgba(229, 92, 218, 0.1) );
+  background: radial-gradient( 500px, rgba(229, 92, 218, 0.8), rgba(229, 92, 218, 0.1));
   // yellow rgba(243, 251, 108, 0.2)
   // background-repeat: no-repeat;
   // background-size: cover;
@@ -58,4 +58,22 @@ canvas {
 .score {
   height: 100px;
   border: 1px solid black;
+}
+.arrows {
+  text-align: center;
+}
+.up {
+  display: block;
+  // margin-left: 46%;
+}
+.left, .right {
+  display: inline;
+}
+.left {
+  // margin-left: 40%;
+
+}
+.right {
+  margin-left: 8px;
+
 }
