@@ -32,4 +32,11 @@ A fun time wasting alternative to endlessly scrolling through social media.
 * Kenney - Voxel Pack, game assets
 
 
+## Special Thanks
+* Kane
+* Joel
+* Luke
+
+
+
 Link to:  [Fuyez](https://fuyez.herokuapp.com)
