@@ -1,24 +1,35 @@
-# README
+# **Fuyez**
+#### a game by me
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A french themed game. A slimey frog is chasing a beautiful Princess for a kiss. If he catches her she will die. If she falls to the bottom of the screen she will die from internal injuries.
 
-Things you may want to cover:
+## Scope
+A fun time wasting alternative to endlessly scrolling through social media.
 
-* Ruby version
+## Challenges
+* Learning how to use Phaser
+* Finding a way for the frog to chase the Princess
+* Creating the illustrations
 
-* System dependencies
+## Features
+* Original animations
+* FUN!
 
-* Configuration
 
-* Database creation
+## Tech Stack
+* HTML / CSS / Javascript / jQuery
+* Ruby on Rails
+* Phaser
 
-* Database initialization
+## Future improvements
+* Improved frog chasing behaviour
+* More levels, including items to collect or to dodge
+* Scoring system
 
-* How to run the test suite
+## References & Inspiration
+* Phaser
+* Josh Morony - Phaser Tutorials
+* Kenney - Voxel Pack, game assets
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+Link to:  [Fuyez](https://fuyez.herokuapp.com)
