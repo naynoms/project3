@@ -1,5 +1,5 @@
 # **Fuyez**
-#### a game by me
+### a game by me
 
 A french themed game. A slimey frog is chasing a beautiful Princess for a kiss. If he catches her she will die. If she falls to the bottom of the screen she will die from internal injuries.
 
